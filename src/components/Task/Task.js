@@ -2,37 +2,45 @@ import { Component } from 'react'
 import './Task.css'
 import Proptypes from 'prop-types'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-export default class Task extends Component{
-  state={
-    label:'',
-    visible:false
+
+export default class Task extends Component {
+  state = {
+    text: '',
+    visible: false,
   }
-  onLabelChange=(e)=>{
+
+  onLabelChange = (e) => {
     this.setState({
-         label:e.target.value,
+      text: e.target.value,
     })
   }
+
   onSubmit = (e) => {
+    const { text } = this.state
+    const { onEditTask } = this.props
     e.preventDefault()
-    if (this.state.label) {
-      this.props.onEditTask(this.state.label)
+    if (text) {
+      onEditTask(text)
       this.setState({
-        label: '',
+        text: '',
         visible: false,
       })
     }
   }
+
   editTask = () => {
     this.setState((prevState) => ({
-      visible: !prevState.visible
+      visible: !prevState.visible,
     }))
   }
 
- 
-  render(){
-    const {label,timeCreated,onDeleted,onToggleDone,done}= this.props
+  render() {
+    const { text, visible } = this.state
+    const {
+      label, timeCreated, onDeleted, onToggleDone, done,
+    } = this.props
     const classNames = done ? 'completed' : ''
-    const clazz=this.state.visible? 'visible':'hidden'
+    const clazz = visible ? 'visible' : 'hidden'
     return (
       <li className={classNames}>
         <form className={clazz} onSubmit={this.onSubmit}>
@@ -41,41 +49,33 @@ export default class Task extends Component{
             className="new-todo"
             placeholder="Type to Edit Task"
             onChange={this.onLabelChange}
-            value={this.state.label}
+            value={text}
           />
         </form>
-      <div className="view">
-        <input className="toggle" type="checkbox" onChange={onToggleDone} checked={done}/>
-        <label onClick={onToggleDone}>
-        <span className="description">{label}</span>
-          <span className="created">{formatDistanceToNow(timeCreated, { addSuffix: true, includeSeconds: true })}</span>
-        </label>
-        <button className="icon icon-edit" onClick={this.editTask}></button>
-        <button className="icon icon-destroy" onClick={onDeleted}></button>
-      </div>
+        <div className="view">
+          <input className="toggle" type="checkbox" onChange={onToggleDone} checked={done} />
+          <label onClick={onToggleDone} role="presentation" htmlFor="{label}" aria-label="Task">
+            <span className="description">{label}</span>
+            <span className="created">{formatDistanceToNow(timeCreated, { addSuffix: true, includeSeconds: true })}</span>
+          </label>
+          <button className="icon icon-edit" type="button" aria-label="Edit button" onClick={this.editTask} />
+          <button className="icon icon-destroy" type="button" aria-label="Destroy button" onClick={onDeleted} />
+        </div>
       </li>
-)
+    )
   }
 }
-Task.defaultProps={
-  label:'write the name of the task',
-  timeCreated:new Date(),
-  done:false,
-  onDeleted:()=>{},
-  onToggleDone:()=>{},
-  editTask:()=>{}
+Task.defaultProps = {
+  label: 'write the name of the task',
+  timeCreated: new Date(),
+  done: false,
+  onDeleted: () => {},
+  onToggleDone: () => {},
 }
-Task.propTypes={
-  label:Proptypes.string,
-  timeCreated:Proptypes.object,
-  done:Proptypes.bool,
-  onDeleted:Proptypes.func,
-  onToggleDone:Proptypes.func,
-  editTask:Proptypes.func
+Task.propTypes = {
+  label: Proptypes.string,
+  timeCreated: Proptypes.object,
+  done: Proptypes.bool,
+  onDeleted: Proptypes.func,
+  onToggleDone: Proptypes.func,
 }
-
-
-
-
-
-
