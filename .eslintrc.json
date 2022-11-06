@@ -1,27 +1,22 @@
-{   "env":{
-     "browser": true,
-     "es6": true,
-     "node": true
-},
-"ignorePatterns": ["node_modules", "dist", "build"],
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "ignorePatterns": ["node_modules", "dist", "build"],
 
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "airbnb",
-      "prettier"
-    ],
-    "rules": {
-        "semi":"off",
-        "no-console":"off",
-        "no-plusplus":"off",
-        "eol-last":"off",
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/prop-types": 0,
-        "react/jsx-props-no-spreading":"off",
-        "react/forbid-prop-types":"off",
-        "react/state-in-constructor":"off"
-    }
+  "extends": ["react-app", "react-app/jest", "airbnb", "prettier"],
+  "rules": {
+    "semi": "off",
+    "no-console": "off",
+    "no-plusplus": "off",
+    "eol-last": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": 0,
+    "react/jsx-props-no-spreading": "off",
+    "react/forbid-prop-types": "off",
+    "react/state-in-constructor": "off"
+  }
 }
-    
