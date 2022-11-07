@@ -7,6 +7,14 @@
   "ignorePatterns": ["node_modules", "dist", "build"],
 
   "extends": ["react-app", "react-app/jest", "airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier"],
   "rules": {
     "semi": "off",
     "no-console": "off",
@@ -18,5 +26,13 @@
     "react/jsx-props-no-spreading": "off",
     "react/forbid-prop-types": "off",
     "react/state-in-constructor": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
   }
 }
