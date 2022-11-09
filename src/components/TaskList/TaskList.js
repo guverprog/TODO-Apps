@@ -1,5 +1,6 @@
 import './TaskList.css';
 import Proptypes from 'prop-types';
+
 import Task from '../Task/Task';
 
 function TaskList({ todos, onDeleted, onToggleDone, onEditTask }) {

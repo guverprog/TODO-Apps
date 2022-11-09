@@ -1,5 +1,6 @@
 import './Footer.css';
 import Proptypes from 'prop-types';
+
 import TaskFilter from '../TasksFilter';
 
 function Footer({ todo, filter, onFilterChange, onClearCompleted }) {
