@@ -32,6 +32,8 @@ function TaskList({ todos, onDeleted, onToggleDone, onEditTask }) {
         id: Proptypes.number,
         done: Proptypes.bool,
         timeCreated: Proptypes.object,
+        min: Proptypes.number,
+        sec: Proptypes.number,
       })
     ).isRequired,
     onDeleted: Proptypes.func,
