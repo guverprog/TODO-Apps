@@ -1,5 +1,5 @@
 import './Title.css';
-
+import React from 'react';
 import Proptypes from 'prop-types';
 
 function Title({ title }) {
@@ -11,4 +11,4 @@ Title.defaultProps = {
 Title.propTypes = {
   title: Proptypes.string,
 };
-export default Title;
+export default React.memo(Title);
